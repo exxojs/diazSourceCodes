@@ -95,8 +95,8 @@ footer{
   }
   
   #toggle-button {
-    background-color: #222e33;
-    border: solid #ce0404 3px;
+    background-color: #191b25;
+    border: solid #d30303 3px;
     color: white;
     font-size: 14px;
     padding: 16px 16px;
@@ -106,14 +106,15 @@ footer{
   }
   
   #toggle-button:hover {
-    box-shadow: #690000 0px 7px 0px 0px;
+    box-shadow: #191b25 0px 7px 0px 0px;
     background-color: #d30303;
-    color: rgb(255, 177, 177);
+    color: rgb(255, 255, 255);
+    border-color: #191b25;
   }
   
   #copy-button{
-    background-color: #222e33;
-    border: solid #6abdc9 3px;
+    background-color: #191b25;
+    border: solid #4cb2e1 3px;
     color: white;
     font-size: 14px;
     padding: 16px 16px;
@@ -123,8 +124,8 @@ footer{
   }
   
   #copy-button:hover{
-    box-shadow: #233337 0px 7px 0px 0px;
-    border: solid #6abdc9 3px;
+    box-shadow: #191b25 0px 7px 0px 0px;
+    border: solid #191b25 3px;
     background-color: #6abdc9;
     color: black;
   }
