@@ -4,7 +4,6 @@ const pageDropdown = document.getElementById('page-dropdown');
 const copyButton = document.getElementById('copy-button');
 
 const longCodePage1 = `
-
 //Hi guys, I'm bored so I'll just code while eating haha
 //This is a basic C++ Calculator hehe
 #include <iostream>
@@ -18,7 +17,7 @@ int main() {
     
     while (true) {
         //let's make the menu --- so it would be decent :)
-        cout << "Hello! This is a C++ Calculator" << endl;
+        cout << "\nHello! This is a C++ Calculator" << endl;
         cout << "===============================" << endl;
         cout << "Choose your desired operation: " << endl;
         cout << "1. Addition" << endl;
@@ -80,38 +79,16 @@ int main() {
                 cout << "Thank you for using the calculator!" << endl;
                 return 0; // exit the program
             default:
-                cout << "Invalid choice. Please try again. ";
+                cout << "\nInvalid choice. Please try again. \n";
         }
     }
 
     return 0;
 }
-
 `;
 
 const longCodePage2 = `
-//C++ code
-// Define the motor pins
-const int leftMotorForward = 5;    // Pin 9 for left motor forward
-const int leftMotorBackward = 9;   // Pin 5 for left motor backward
-const int rightMotorForward = 6;  // Pin 10 for right motor forward
-const int rightMotorBackward = 10;  // Pin 6 for right motor backward
 
-void setup() {
-  // Set the motor pins as outputs
-  pinMode(leftMotorForward, OUTPUT);
-  pinMode(leftMotorBackward, OUTPUT);
-  pinMode(rightMotorForward, OUTPUT);
-  pinMode(rightMotorBackward, OUTPUT);
-}
-
-void loop() {
-  // Spin clockwise
-  analogWrite(leftMotorForward, 128);  // Set left motor forward to 50% power
-  analogWrite(rightMotorForward, 0);  // Set right motor forward to 0 (off)
-  analogWrite(leftMotorBackward, 0);  // Set left motor backward to 0 (off)
-  analogWrite(rightMotorBackward, 128);  // Set right motor backward to 50% power
-}
 `;
   
 const longCodePage3 = `
