@@ -4,6 +4,7 @@ const pageDropdown = document.getElementById('page-dropdown');
 const copyButton = document.getElementById('copy-button');
 
 const longCodePage1 = `
+
 //Hi guys, I'm bored so I'll just code while eating haha
 //This is a basic C++ Calculator hehe
 #include <iostream>
@@ -17,7 +18,7 @@ int main() {
     
     while (true) {
         //let's make the menu --- so it would be decent :)
-        cout << "\nHello! This is a C++ Calculator" << endl;
+        cout << "Hello! This is a C++ Calculator" << endl;
         cout << "===============================" << endl;
         cout << "Choose your desired operation: " << endl;
         cout << "1. Addition" << endl;
@@ -79,12 +80,13 @@ int main() {
                 cout << "Thank you for using the calculator!" << endl;
                 return 0; // exit the program
             default:
-                cout << "\nInvalid choice. Please try again. \n";
+                cout << "Invalid choice. Please try again. ";
         }
     }
 
     return 0;
 }
+
 `;
 
 const longCodePage2 = `
