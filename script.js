@@ -1,145 +1,177 @@
-const codeDisplay = document.getElementById('code-display');
-const toggleButton = document.getElementById('toggle-button');
 const pageDropdown = document.getElementById('page-dropdown');
-const copyButton = document.getElementById('copy-button');
-
-const longCodePage1 = `
-//Hi guys, I'm bored so I'll just code while eating haha
-//This is a basic C++ Calculator hehe
-#include <iostream>
-
-using namespace std; //so I won't need to manually type std
-
-int main() {
-    //Let's set our variables... and name them properly
-    int userChoice; //the user's choice will be an integer
-    double nOne, nTwo, operationResult; //seems fair
-    
-    while (true) {
-        //let's make the menu --- so it would be decent :)
-        cout << "\nHello! This is a C++ Calculator" << endl;
-        cout << "===============================" << endl;
-        cout << "Choose your desired operation: " << endl;
-        cout << "1. Addition" << endl;
-        cout << "2. Substraction" << endl;
-        cout << "3. Multiplication" << endl; 
-        cout << "4. Division" << endl;
-        cout << "5. Exit program" << endl;
-        cout << "Enter your choice: ";
-        
-        //let's take the user's input using cin
-        cin >> userChoice; 
-        //Now let's make the functions and statements; the user should be able to choose any operation so let's use "switch"
-        switch (userChoice){
-            case 1:
-                cout << "Addition" << endl;
-                cout << "Enter your first number: ";
-                cin >> nOne;
-                cout << "Enter your second number: ";
-                cin >> nTwo;
-                operationResult = nOne + nTwo;
-                cout << "The sum is: "; 
-                cout << operationResult << endl;
-                break;
-            case 2:
-                cout << "Substraction" << endl;
-                cout << "Enter your first number: ";
-                cin >> nOne;
-                cout << "Enter your second number: ";
-                cin >> nTwo;
-                operationResult = nOne - nTwo;
-                cout << "The difference is: ";
-                cout << operationResult << endl;
-                break;
-            case 3:
-                cout << "Multiplication" << endl;
-                cout << "Enter your first number: ";
-                cin >> nOne;
-                cout << "Enter your second number: ";
-                cin >> nTwo;
-                operationResult = nOne * nTwo;
-                cout << "The product is: ";
-                cout << operationResult << endl;
-                break;
-            case 4:
-                cout << "Division" << endl; 
-                cout << "Enter your first number: ";
-                cin >> nOne;
-                cout << "Enter your second number: ";
-                cin >> nTwo;
-                if (nTwo!= 0){
-                operationResult = nOne / nTwo;
-                cout << "The quotient is: ";
-                cout << operationResult << endl;
-                } else {
-                    cout << "ERROR: Can't divide by zero" << endl;
-                }
-                break;
-            case 5:
-                cout << "Thank you for using the calculator!" << endl;
-                return 0; // exit the program
-            default:
-                cout << "\nInvalid choice. Please try again. \n";
-        }
-    }
-
-    return 0;
-}
-`;
-
-const longCodePage2 = `
-
-`;
-  
-const longCodePage3 = `
-//C++ code
-
-`;
-
-toggleButton.addEventListener('click', () => {
-  if (codeDisplay.style.display === 'none') {
-    codeDisplay.style.display = 'block';
-    toggleButton.textContent = 'Toggle Code';
-  } else {
-    codeDisplay.style.display = 'none';
-    toggleButton.textContent = 'Toggle Code';
-  }
-});
+const calDiv = document.querySelector('.cal');
+const slopeDiv = document.querySelector('.slope');
+const mDiv = document.querySelector('.mmm');
 
 pageDropdown.addEventListener('change', () => {
-  switch (pageDropdown.value) {
-    case 'page1':
-      codeDisplay.textContent = longCodePage1;
-      break;
-    case 'page2':
-      codeDisplay.textContent = longCodePage2;
-      break;
-    case 'page3':
-      codeDisplay.textContent = longCodePage3;
-      break;
-    default:
-      codeDisplay.textContent = '';
+  if (pageDropdown.value === 'cal') {
+    slopeDiv.style.display = 'none';
+    calDiv.style.display = 'block';
+    mDiv.style.display = 'none';
+  } 
+  else if (pageDropdown.value === 'M') {
+    slopeDiv.style.display = 'none';
+    calDiv.style.display = 'none';
+    mDiv.style.display = 'flex';
+  } 
+  else {
+    calDiv.style.display = 'none';
+    slopeDiv.style.display = 'flex';
+    mDiv.style.display = 'none';
   }
 });
+//===============================================
+function toggleMainDiv() {
+  const mainDiv = document.querySelector('.main');
+  const toggleButton = document.getElementById('toggle-button');
 
-copyButton.addEventListener('click', () => {
-  const codeToCopy = codeDisplay.textContent;
-  const textarea = document.createElement('textarea');
-  textarea.value = codeToCopy;
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand('copy');
-  document.body.removeChild(textarea);
-  alert('Code copied to clipboard!');
+  toggleButton.addEventListener('click', () => {
+    if (mainDiv.style.display === 'none') {
+      mainDiv.style.display = 'block';
+    } else {
+      mainDiv.style.display = 'none';
+    }
+  });
+}
+
+toggleMainDiv();
+//===============================================
+//calculator
+const display = document.getElementById('display');
+const buttons = document.querySelectorAll('.buttonc');
+const copyButton = document.querySelectorAll('#copy-button');
+
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    if (button.textContent === ' ') {
+      const currentValue = display.value;
+      display.value = currentValue.slice(0, -1);
+    } else if (button.textContent === 'C') {
+      display.value = '';
+    } else if (button.textContent === '=') {
+      try {
+        const result = eval(display.value);
+        display.value = result; // Set the result to the display
+        alert(`Total is: ${result}`); // Show the result in a window popup
+      } catch (e) {
+        display.value = 'Error';
+      }
+    } else {
+      display.value += button.textContent;
+    }
+  });
+});
+  //=============================================
+  //slope
+  const x1Input = document.getElementById('x1');
+const y1Input = document.getElementById('y1');
+const x2Input = document.getElementById('x2');
+const y2Input = document.getElementById('y2');
+const calculateButton = document.getElementById('calculate');
+const clearButton = document.getElementById('clear');
+const resultElement = document.getElementById('result');
+const form = document.querySelector('form');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
 });
 
-codeDisplay.textContent = longCodePage1;
+calculateButton.addEventListener('click', calculateSlope);
+clearButton.addEventListener('click', clearValues);
+
+function calculateSlope() {
+  const x1 = parseFloat(x1Input.value);
+  const y1 = parseFloat(y1Input.value);
+  const x2 = parseFloat(x2Input.value);
+  const y2 = parseFloat(y2Input.value);
+
+  if (x1 === x2) {
+    resultElement.textContent = 'Undefined';
+  } else {
+    const slope = (y2 - y1) / (x2 - x1);
+    resultElement.textContent = `The slope is: ${slope.toFixed(2)}`;
+  }
+}
+
+function clearValues() {
+  x1Input.value = '0';
+  y1Input.value = '0';
+  x2Input.value = '0';
+  y2Input.value = '0';
+  resultElement.textContent = '';
+}
+
+//===============================================
+const numbersInput = document.getElementById('numbers');
+const calcuButton = document.getElementById('calculateMMM');
+const resultDiv = document.getElementById('resultMMM');
+const resultContainer = document.getElementById('result-container');
+
+calcuButton.addEventListener('click', (e) => {
+  e.preventDefault(); // Add this line to prevent form submission
+  calculateStats();
+});
+
+function calculateStats() {
+  const numbersString = numbersInput.value;
+  const numbersArray = numbersString.split(',').map(Number);
+
+  if (numbersArray.some(isNaN)) {
+    resultDiv.innerHTML = 'Invalid input. Please enter numbers only.';
+    return;
+  }
+
+  const mean = calculateMean(numbersArray);
+  const median = calculateMedian(numbersArray);
+  const mode = calculateMode(numbersArray);
+
+  const resultHTML = `
+  <div class="result-container">
+    <div class="result-item">
+      <h4>Mean</h4>
+      <p><span class="ellipsis"></span>${mean.toFixed(2)}</p>
+    </div>
+    <div class="result-item">
+      <h4>Median</h4>
+      <p><span class="ellipsis"></span>${median}</p>
+    </div>
+    <div class="result-item">
+      <h4>Mode</h4>
+      <p><span class="ellipsis"></span>${mode}</p>
+    </div>
+  </div>
+`;
+  const resultElement = document.createElement('div');
+  resultElement.innerHTML = resultHTML;
+  resultContainer.appendChild(resultElement);
+}
+
+function calculateMean(arr) {
+  return arr.reduce((a, b) => a + b, 0) / arr.length;
+}
+
+function calculateMedian(arr) {
+  arr.sort((a, b) => a - b);
+  const middleIndex = Math.floor(arr.length / 2);
+  return arr.length % 2 === 0? (arr[middleIndex - 1] + arr[middleIndex]) / 2 : arr[middleIndex];
+}
+
+function calculateMode(arr) {
+  const frequencyMap = {};
+  arr.forEach(num => {
+    frequencyMap[num] = (frequencyMap[num] || 0) + 1;
+  });
+  const maxFrequency = Math.max(...Object.values(frequencyMap));
+  const modes = Object.keys(frequencyMap).filter(key => frequencyMap[key] === maxFrequency);
+  return modes.length === 1? modes[0] : 'No unique mode';
+}
 
 //===============================================
 const button = document.querySelector('.change-image');
 const image = document.querySelector('#changeable-image');
 let imageIndex = 0;
-const images = ['riptideSmall.webp', 'bronze.webp', 'silver.webp', 'gold.webp', 'diamond.webp'];
+const images = ['hydraEmblem.webp', 'bronze.webp', 'silver.webp', 'gold.webp', 'diamond.webp'];
 
 button.addEventListener('click', () => {
   imageIndex = (imageIndex + 1) % images.length;
